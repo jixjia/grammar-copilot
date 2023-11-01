@@ -1,0 +1,305 @@
+/* 
+Author              Jixin Jia (Gin)
+Bootstrap Version   v5.2.3
+Last updated        2023.04.11
+
+
+TABLE OF CONTENTS
+
+Global Variables
+Starter Template - LAYOUT
+Starter Template - UTILITIES
+Starter Template - STYLE & COLORS
+Starter Template - FONTS
+Starter Template - NAV BAR
+Starter Template - CUSTOM MODAL
+Starter Template - DYNAMIC LAYOUT & FLEX POINT
+*/
+
+
+
+/* Global variables */
+:root {
+  --theme-black: #222;
+  --theme-background: #F2F6FC;
+  --bg-lightgray: #E2E2E2;
+  --bg-white: #fff;
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+}
+
+
+/* UI Components */
+.guidance-arrow {
+  max-width: 200px;
+  position: relative;
+  right: 10rem;
+}
+.guidance-arrow-shifted {
+  max-width: 200px;
+  position: relative;
+  right: 20rem;
+}
+
+/* Preloaded Icons */
+#preloaded_icons {
+    position: absolute;
+    top: -99999px;
+    left: -99999px;
+    visibility: hidden;
+    z-index: -999;
+}
+
+/* Starter Template - LAYOUT */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background-color: var(--theme-background);
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 1.05em;
+}
+.h-right {
+  display: flex;
+  justify-content: flex-end;
+}
+.h-center {
+  justify-content: center;
+  display: flex;
+}
+.v-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+}
+.h-center-block {
+  align-items: center;
+}
+td {
+  vertical-align: top;
+}
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+.text-center {
+  text-align: center;
+}
+.text-v-center {
+  vertical-align: middle;
+}
+.divider {
+  margin: 2.5rem 2.5rem;
+}
+
+
+/* Starter template - UTILITIES */
+.invisible {
+  visibility: hidden;
+}
+.hide {
+  display: none;
+}
+.b-divider {
+  height: 3rem;
+  background-color: rgba(0, 0, 0, .1);
+  border: solid rgba(0, 0, 0, .15);
+  border-width: 1px 0;
+  box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+}
+.zoom {
+  transition: transform .3s; /* Animation */
+}
+.zoom:hover {
+  transform: scale(1.003);
+}
+.shift-right {
+  transition: transform .3s; /* Animation */
+}
+.shift-right:hover {
+  transform: translate(5px, 0);
+}
+
+
+
+/* Starter Template - STYLE & COLORS */
+.blue {
+  background-color:  blue;
+}
+.red {
+  background-color:  red;
+}
+.yellow {
+  background-color:  yellow;
+}
+.green {
+  background-color: green;
+}
+.gray {
+  background-color: gray;
+}
+.pointer {
+  cursor: pointer;
+}
+.pointer_disabled {
+  cursor: not-allowed !important;
+  pointer-events: all !important;
+}
+a {
+  text-decoration: none;
+}
+.no-link {
+  text-decoration: none !important;
+  color: inherit;
+}
+.no-link:hover{
+  text-decoration: none;
+  /* color: inherit; */
+}
+
+
+/* Starter Template - FONTS */
+.text-xxs {
+  font-size: 0.7rem;
+}
+.text-xs {
+  font-size: 0.8rem;
+}
+.text-s {
+  font-size: 0.9rem;
+}
+.text-m {
+  font-size: 1rem;
+}
+.text-l {
+  font-size: 1.2rem;
+}
+.text-xl {
+  font-size: 1.4rem;
+}
+.text-xxl {
+  font-size: 1.7rem;
+}
+.text-2xl {
+  font-size: 2rem;
+}
+.text-3xl {
+  font-size: 3rem;
+}
+.text-4xl {
+  font-size: 4rem;
+}
+.text-5xl {
+  font-size: 5rem;
+}
+.text-lightgray {
+  color: var(--theme-lightgray);
+}
+.text-xxs {
+  font-size: 0.75rem;
+}
+.text-xs {
+  font-size: 0.9rem;
+}
+.text-s {
+  font-size: 1rem;
+}
+.text-m {
+  font-size: 1.1rem;
+}
+.text-l {
+  font-size: 1.4rem;
+}
+.text-2xl {
+  font-size: 2rem;
+}
+.text-3xl {
+  font-size: 3rem;
+}
+.text-4xl {
+  font-size: 4rem;
+}
+.text-black {
+  color: #333;
+}
+.text-gray {
+  color: gray;
+}
+.text-white {
+  color: white;
+}
+.text-red {
+  color: red;
+}
+.text-blue {
+  color: blue;
+}
+.text-yellow {
+  color: yellow;
+}
+.text-green {
+  color: green;
+}
+.text-light {
+  font-weight: light;
+}
+.text-lighter {
+  font-weight: lighter;
+}
+
+
+/* Starter Template - NAV BAR */
+
+
+/* Starter Tempalte - USTOM MODAL */
+.modal-large-fluid {
+  max-width: inherit;
+  width: 70%;
+}
+
+/* GenAI */
+.btn-context-template {
+  height: 4em;
+  width: 10em;
+  cursor: pointer;
+}
+.genai-output {
+  background-color: rgb(39, 43, 43); 
+  color: #eee; 
+  font-family: consolas;
+}
+.genai-output:focus {
+  outline: none;
+  background-color: rgb(39, 43, 43);
+  color: #eee; 
+}
+.btn-sm-icon {
+  /* background-color: #405a83; */
+  color: #333;
+  font-size: 1.1em;
+}
+.btn-sm-icon:hover {
+  /* background-color: #aaa; */
+  color: #976c9e;
+}
+.rotate:hover {
+  /* rotate object by 90 degree and animate it */
+  transform: rotate(90deg);
+  transition: transform .5s; /* Animation */
+}
+
+
+/* Starter Tempalte - DYNAMIC LAYOUT & FLEX POINT */
+@media screen and (max-width: 768px) {
+  .something {
+    margin: 0;
+  }
+}

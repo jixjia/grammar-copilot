@@ -1,0 +1,241 @@
+{% extends "template.html" %} {% block main %}
+
+<!-- Body -->
+<main>
+    <!-- Top Banner -->
+    <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+        <div class="container-xl px-4">
+            <div class="page-header-content pt-4">
+                <div class="row align-items-center justify-content-between">
+                    <div class="col-auto mt-2">
+                        <h1 class="page-header-title">Improve my writing</h1>
+                        <div class="page-header-subtitle">Boost my writing skill in seconds !</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Top Banner End -->
+
+    <!-- Main -->
+    <div class="container-xl px-4 mt-n10">
+        <div class="row">
+            <!-- LEFT: User Inputs -->
+            <div class="col-lg-9">
+                <!-- Input Group -->
+                <div id="default">
+                    <div class="card nav-nonsticky card-header-actions mb-4">
+                        <div class="card-header">Application
+                            <div>
+                                <button class="btn btn-sm-icon" onclick="reload_page();">
+                                    <i class="bi bi-arrow-repeat me-2"></i> Start Over
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+
+                            <div class="sbp-preview-content">
+                                <div class="row mb-4">
+                                    <!-- User Input -->
+                                    <div class="col mb-1">
+                                        <label for="draft_writing" class="text-s pb-2">Your writing <i
+                                                class="bi bi-info-circle ms-1" data-bs-toggle="tooltip"
+                                                data-bs-placement="top"
+                                                title="Your draft work for AI to review and rewrite"></i></label>
+                                        <div class="float-end">
+                                            <a class="btn btn-sm btn-icon btn-sm-icon" data-bs-toggle="tooltip"
+                                                data-bs-placement="top" title="Clear writing"
+                                                onclick="clear_text_field('draft_writing')">
+                                                <span class="mx-2"><i class="bi bi-eraser"></i></span>
+                                            </a>
+                                        </div>
+                                        <textarea class="form-control form-control-solid" id="draft_writing" rows="20"
+                                            placeholder="Paste your draft writing here..."></textarea>
+                                    </div>
+
+                                    <!-- OpenAI Output -->
+                                    <div id="div_assistant_writing" class="col mb-1">
+                                        <label class="text-s pb-2 text-black">Improved by AI</label>
+                                        <div class="float-end">
+                                            <a class="btn btn-sm btn-icon btn-sm-icon" data-bs-toggle="modal"
+                                                data-bs-target="#modal_ai">
+                                                <span class="mx-2"><i class="bi bi-fullscreen"></i></span>
+                                            </a>
+                                            <a class="btn btn-sm btn-icon btn-sm-icon" data-bs-toggle="tooltip"
+                                                data-bs-placement="top" title="Copy to clipboard"
+                                                onclick="copy_to_clipboard('assistant_writing')">
+                                                <span class="mx-2"><i class="bi bi-clipboard"></i></span>
+                                            </a>
+                                        </div>
+                                        <textarea class="form-control genai-output assistant_writing"
+                                            id="assistant_writing" rows="20"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-1">
+                                    <!-- Context -->
+                                    <div class="col-lg-6 mb-1">
+                                        <label for="context" class="text-s pb-2">Add context (optional) <i
+                                                class="bi bi-info-circle ms-1" data-bs-toggle="tooltip"
+                                                data-bs-placement="top"
+                                                title="Add contextual information to help AI learn more about your motivation"></i></label>
+                                        <div class="input-group input-group-joined input-group-solid mb-3">
+                                            <textarea class="form-control form-control-solid" id="context" rows="5"
+                                                placeholder="Explain your writing background and motivation..."></textarea>
+                                        </div>
+                                    </div>
+                                    <!-- Writing Style -->
+                                    <div class="col-lg-3 mb-1">
+                                        <label for="tone_style" class="text-s pb-2">Writing tone</label>
+                                        <select class="form-control form-select" id="tone_style">
+                                            <option value="professional" selected>Professional</option>
+                                            <option value="casual">Casual</option>
+                                            <option value="friendly">Friendly</option>
+                                            <option value="humorous">Humorous</option>
+                                            <option value="academic">Academic</option>
+                                        </select>
+                                    </div>
+                                    <!-- Writing Style -->
+                                    <div class="col-lg-3 mb-1">
+                                        <label for="language" class="text-s pb-2">Rewrite to</label>
+                                        <select class="form-control form-select" id="language">
+                                            <option value="English" selected>English</option>
+                                            <option value="Mandarin">Mandarin Chinese (中文)</option>
+                                            <option value="Japanese">Japanese (日本語)</option>
+                                            <option value="Korean">Korean (한국어)</option>
+                                            <option value="Hindi">Hindi (हिन्दी)</option>
+                                            <option value="Spanish">Spanish (Español)</option>
+                                            <option value="French">French (Français)</option>
+                                            <option value="Arabic">Arabic (العربية)</option>
+                                            <option value="Portuguese">Portuguese (Português)</option>
+                                            <option value="German">German (Deutsch)</option>
+                                            <option value="Italian">Italian (Italiano)</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-4">
+                                    <p class="text-s lead">or use a template</p>
+                                    <div class="col">
+                                        {% for temp in templates %}
+                                        <button class="btn btn-outline-primary btn-context-template" type="button"
+                                            onclick="insert_context('{{temp.context}}')">
+                                            {{temp.name}}
+                                        </button>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Footer Note -->
+                        <!-- <div class="sbp-preview-text h-center"></div> -->
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT: Floating "Sticky" Control Panel -->
+            <div class="col-lg-3">
+                <div class="nav-sticky">
+                    <!-- Control panel -->
+                    <div class="card">
+                        <div class="card-header">Control Panel</div>
+                        <div class="card-body">
+                            <!-- Use Advanced Vocabulary -->
+                            <div class="form-check form-switch pointer">
+                                <label class="form-check-label pointer" for="advanced_vocabulary">Prefer advanced
+                                    vocabulary <i class="bi bi-info-circle ms-2" data-bs-toggle="tooltip"
+                                        data-bs-placement="top"
+                                        title="Use more advanced words where appropriate"></i></label>
+                                <input class="form-check-input pointer" type="checkbox" id="advanced_vocabulary"
+                                    name="advanced_vocabulary" checked>
+                            </div>
+
+                            <!-- Allow Edits -->
+                            <div class="form-check form-switch pointer">
+                                <label class="form-check-label pointer" for="allow_feedback">Active feedback <i
+                                        class="bi bi-info-circle ms-2" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="Use Active Feedback to modify AI outputs"></i></label>
+                                <input class="form-check-input pointer" type="checkbox" id="allow_feedback"
+                                    name="allow_feedback" checked>
+                            </div>
+
+                            <!-- Use GPT4 -->
+                            <div class="form-check form-switch pointer">
+                                <label class="form-check-label pointer" for="use_gpt4">Use GPT4 <i
+                                        class="bi bi-info-circle ms-2" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="For most writing tasks GPT35 is sufficient"></i></label>
+                                <input class="form-check-input pointer" type="checkbox" id="use_gpt4" name="use_gpt4">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="d-grid gap-2 my-5">
+                        <button id="btn_rewrite" class="btn btn-block btn-secondary py-3 text-m text-lighter" type="button">
+                            <i class="bi bi-vector-pen me-2"></i>
+                            Help me improve !
+                        </button>
+                    </div>
+
+                    <!-- Active Feedback -->
+                    <div id="div_active_feedback" class="hide">
+                        <label for="active_feedback" class="text-s pb-2">Active Feedback</label>
+                        <div class="float-end">
+                            <a class="btn btn-sm btn-icon btn-sm-icon" data-bs-toggle="tooltip" data-bs-placement="top"
+                                title="Clear feedback" onclick="clear_text_field('active_feedback')">
+                                <span class="mx-2"><i class="bi bi-eraser"></i></span>
+                            </a>
+                        </div>
+                        <div class="input-group input-group-joined mb-3">
+                            <textarea class="form-control" id="active_feedback" rows="4"
+                                placeholder="Add prompts here to refine AI results"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Loading -->
+                    <div id="div_loading" class="mt-5 pt-4"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Main End -->
+</main>
+<!-- Body End -->
+
+<!-- Footer -->
+<footer class="pb-3 mt-4">
+    <div class="container-xl px-4">
+        <div class="row">
+            <div class="col h-center text-xs">
+                &copy; 2023 Grammar Copilot is based on Azure OpenAI technology. Ver 20231018.v8
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer End -->
+
+<!-- Modal -->
+<div class="modal fade" id="modal_ai" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-body genai-output text-s">
+                <p class="assistant_writing" style="white-space:pre-wrap;"></p>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-sm btn-icon btn-sm-icon" data-bs-toggle="tooltip" data-bs-placement="top"
+                    title="Copy to clipboard" onclick="copy_to_clipboard('assistant_writing')">
+                    <span class="mx-2"><i class="bi bi-clipboard"></i></span>
+                </a>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- App JS -->
+<script src="../static/js/main.js"></script>
+{% endblock %}

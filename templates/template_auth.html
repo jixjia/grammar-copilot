@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Jixin Jia (Gin)">
+    <title>Grammar Copilot - An AI assisted English Writing</title>
+
+    <!-- Flask script root -->
+    <script type=text/javascript>
+        $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../static/images/logo.png" />
+
+    <!-- Bootstrap 5 icons (Local) -->
+    <link rel="stylesheet" href="../static/bootstrap-icons-1.10.4/font/bootstrap-icons.css">
+
+    <!-- Google Fonts Roboto & M PLUS Rounded 300/400/500 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;400;500&family=Roboto+Condensed:wght@300;400&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome v4 (Local & Preloaded) -->
+    <link rel="preload" as="style" href="../static/font-awesome-4.7.0/css/font-awesome.min.css" onload="this.rel='stylesheet'"/>
+
+    <!-- Custom styles (SB Lite) -->
+    <link rel="stylesheet" href="../static/css/sb-admin-2.min.css">
+
+    <!-- Theme sheet (SB PRO)-->
+    <link rel="stylesheet" href="../static/sb-admin-pro/css/styles.css" />
+    
+    <!-- jQuery and Popper (Microsoft CDN)-->
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+
+    <!-- Style sheet -->
+    <style>
+        .bg-login-image {
+            background: url(../static/images/login.jpg);
+            background-position: center;
+            background-size: cover;
+        }
+        .bg-register-image {
+            background: url(../static/images/register.jpg);
+            background-position: center;
+            background-size: cover
+        }
+        .bg-password-image {
+            background: url(../static/images/forgot_password.jpg);
+            background-position: center;
+            background-size: cover
+        }
+        .h-right {
+            display: flex;
+            justify-content: flex-end;
+        }
+        .pointer {
+            cursor: pointer;
+        }
+        .hide {
+            display: none;
+        }
+        .h-center {
+            justify-content: center;
+            display: flex;
+        }
+        #div_register {
+            height: 60px;
+        }
+        .pointer_disabled {
+            cursor: not-allowed !important;
+            pointer-events: all !important;
+        }
+    </style>
+  </head>
+
+  <body>
+        
+    <!-- Body -->
+    {% block main %}
+    {% endblock %}  
+    <!-- Body End -->
+
+    
+    <!-- Bootstrap 5.2.3 local js -->
+    <script src="../static/bootstrap-5.2.3-dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Theme JS (SB PRO) -->
+    <script src="../static/sb-admin-pro/js/scripts.js"></script>
+    
+    <!-- Core plugin JavaScript-->
+    <script src="../static/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../static/js/sb-admin-2.min.js"></script>
+    
+    <!-- App JS -->
+    <script src="../static/js/main.js"></script>
+  </body>
+</html>

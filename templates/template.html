@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Jixin Jia (Gin)">
+    <title>Grammar Copilot - Improve Your Writing</title>
+
+    <!-- Flask script root -->
+    <script type=text/javascript>$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};</script>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../static/images/logo.png" />
+    <!-- Font Awesome Pseudo Elements 6.3.0 -->
+    <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js" crossorigin="anonymous"></script>
+    <!-- Theme sheet (SB PRO)-->
+    <link rel="stylesheet" href="../static/sb-admin-pro/css/styles.css" />
+    <!-- Feathre Icons (4.29.0) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js" crossorigin="anonymous"></script>
+    <!-- Bootstrap 5 icons (Local) -->
+    <link rel="stylesheet" href="../static/bootstrap-icons-1.10.4/font/bootstrap-icons.css">
+    <!-- Google Fonts Roboto & M PLUS Rounded 300/400/500 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;400;500&family=Roboto+Condensed:wght@300;400&display=swap" rel="stylesheet">
+    <!-- Font Awesome v4 (Local & Preloaded) -->
+    <link rel="preload" as="style" href="../static/font-awesome-4.7.0/css/font-awesome.min.css" onload="this.rel='stylesheet'"/>
+    <!-- jQuery and Popper (Microsoft CDN)-->
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <!-- Application CSS -->
+    <link rel="stylesheet" href="../static/css/main.css">
+    <!-- Preload Icons -->
+    <div id="preloaded_icons"></div>
+  </head>
+
+  <body class="nav-fixed">
+    <!-- Nav Bar -->
+    <nav class="topnav navbar navbar-expand shadow justify-content-between justify-content-sm-start navbar-light bg-white" id="sidenavAccordion">
+      <!-- Sidenav Toggle Button-->
+      <button class="btn btn-icon btn-transparent-dark mx-2" id="sidebarToggle"><i data-feather="menu"></i></button>
+      <!-- Navbar Brand-->
+      <!-- * * * * * * Dimensions: Maximum height: 32px, maximum width: 240px-->
+      <a class="navbar-brand px-3 mx-1" href="/"><img src="../static/images/logo.png" class="logo">Grammar Copilot</a>
+      <!-- Navbar Items-->
+      <ul class="navbar-nav align-items-center ms-auto me-5">
+          <!-- User Dropdown-->
+          <li class="nav-item dropdown no-caret dropdown-user me-3 me-lg-4">
+              <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="img-fluid" src="../static/sb-admin-pro/img/illustrations/profiles/profile-1.png" /></a>
+              <div class="dropdown-menu dropdown-menu-end border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownUserImage">
+                  <h6 class="dropdown-header d-flex align-items-center">
+                      <img class="dropdown-user-img" src="../static/sb-admin-pro/img/illustrations/profiles/profile-1.png" />
+                      <div class="dropdown-user-details">
+                          <div class="dropdown-user-details-name">{{session['first_name']}} {{session['last_name']}}</div>
+                          <div class="dropdown-user-details-email">{{session['username']}}</div>
+                      </div>
+                  </h6>
+                  <div class="dropdown-divider"></div>
+                  <!-- <a class="dropdown-item" href="#!">
+                      <div class="dropdown-item-icon"><i data-feather="settings"></i></div>
+                      Account
+                  </a> -->
+                  <a class="dropdown-item" href="/logout">
+                      <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
+                      Logout
+                  </a>
+              </div>
+          </li>
+      </ul>
+    </nav>
+    <!-- Navbar End -->
+
+    <!-- Main -->
+    <div id="layoutSidenav">
+      <!-- Side Nav -->
+      <div id="layoutSidenav_nav">
+        <nav class="sidenav shadow-right sidenav-light">
+            <div class="sidenav-menu">
+                <div class="nav accordion" id="accordionSidenav">
+                    <!-- Sidenav PROJECTS -->
+                    <div class="sidenav-menu-heading">Copilots</div>
+                    <a class="nav-link" href="/">
+                      <div class="nav-link-icon"><i class="bi bi-vector-pen"></i></div>
+                      Improve my writing
+                    </a>
+                    
+                </div>
+            </div>
+            
+            <!-- Sidenav Footer-->
+            <div class="sidenav-footer">
+                <div class="sidenav-footer-content">
+                    <div class="sidenav-footer-subtitle">A proud work of</div>
+                    <div class="sidenav-footer-title">Jixin Jia (Gin)</div>
+                </div>
+            </div>
+        </nav>
+      </div>
+      <!-- Side Nav END -->
+
+      <!-- Body -->
+      <div id="layoutSidenav_content" style="min-height: 0; !important">
+        {% block main %}
+        {% endblock %}  
+      </div>
+      <!-- Body End -->
+
+    </div>
+    <!-- Main End -->
+    
+    
+    <!-- Bootstrap 5.2.3 local js -->
+    <script src="../static/bootstrap-5.2.3-dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Theme JS (SB PRO) -->
+    <script src="../static/sb-admin-pro/js/scripts.js"></script>
+    
+  </body>
+</html>
